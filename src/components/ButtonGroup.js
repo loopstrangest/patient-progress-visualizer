@@ -10,6 +10,7 @@ var patientList = patientData.map(data => data['Patient Name'])
 const Buttons = ({chartDataset, setPatient, setPatientData}) => (
     <Container disableElevation variant="contained" sx={{
         margin: 'auto',
+        marginTop: '0.5rem',
         display:'flex',
         width:'80%',
         flexWrap:'wrap',

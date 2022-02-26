@@ -9,8 +9,9 @@ const GlobalStyle = createGlobalStyle`
     font-family: -apple-system,BlinkMacSystemFont,Inter,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
 }
 
-html{
+body{
     font-family: sans-serif;
+    margin: 1rem;
 }
 
 .App{
@@ -20,29 +21,38 @@ html{
 
 .LineChartContainer{
     display:flex;
-    flex-direction: row;
+    flex-direction: column;
     margin: auto;
+    margin-top: 1.5rem;
+    animation-duration:10;
 }
 
 .recharts-responsive-container{
     margin: auto;
 }
 
-h1, h2{
+h1, h2, h3{
     font-family: 'Inter', sans-serif;
     font-weight: 500;
     font-size: 24px;
     color: #278c79;
     margin:auto;
-    margin-top: 0.5rem;
     text-align: center;
 }
 
-h2{
+h2, h3{
     font-size: 18px;
     line-height: 18px;
-    margin-bottom: 1rem;
 }
+
+h2{
+    margin-top: 0.25rem;
+}
+
+h3{
+    margin-bottom: 0.25rem;
+}
+
 
 `;
 
