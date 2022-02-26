@@ -12,6 +12,12 @@ This project uses the [Recharts](https://recharts.org), [MaterialUI](https://mui
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Installation Required
+
+In the project directory, to install all of the required dependencies, run:
+
+### `npm install`
+
 ## Running the app
 
 In the project directory, you can run:
