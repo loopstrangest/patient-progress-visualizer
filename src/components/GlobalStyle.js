@@ -5,25 +5,28 @@ const GlobalStyle = createGlobalStyle`
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    
+    box-sizing: border-box;   
 }
 
 body{
     font-family: -apple-system,BlinkMacSystemFont,Inter,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
-    margin: 2.5%;
     background-color: #fbfcf9;
+    margin: 2vh 2vw;
 }
 
 .App{
+    width: 95vw;
+    height: 95vh;
+    display: flex;
+}
+
+.Container{
     display: flex;
     flex-direction: column;
+    margin: auto;
 }
 
-.header{
-    height: 10%;
-}
-
+/* Distinguish between title, subtitle, chart title */
 h1, h2, h3{
     font-family: 'Rasa', sans-serif;
     font-weight: 500;
@@ -33,15 +36,13 @@ h1, h2, h3{
     text-align: center;
 }
 
-h2{
+h2, h3{
     font-size: 18px;
     line-height: 18px;
 }
 
 h3{
     font-family: 'Inter', sans-serif;
-    font-size: 16px;
-    line-height: 16px;
     margin-bottom: 0.25rem;
 }
 
@@ -51,9 +52,35 @@ h3{
     margin: auto;
     margin-top: 2.5%;
     width:90vw;
-    height:65vh;
+    height:60vh;
 }
 
+/* Chart height responsiveness to viewport height */
+@media(min-height: 400px){
+    .LineChartContainer{
+        height:65vh;    
+    }
+}
+
+@media(min-height: 500px){
+    .LineChartContainer{
+        height:70vh;    
+    }
+}
+
+@media(min-height: 600px){
+    .LineChartContainer{
+        height:75vh;    
+    }
+}
+
+@media(min-height: 700px){
+    .LineChartContainer{
+        height:80vh;    
+    }
+}
+
+/* Chart and label spacing */
 .recharts-responsive-container{
     margin: auto;
 }
@@ -62,11 +89,6 @@ h3{
     text-anchor: middle;
     fill: #595c5e;
 }
-
-button:hover{
-    background-color: #6d9147;
-}
-
 
 `;
 

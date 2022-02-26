@@ -1,10 +1,13 @@
+// Import MaterialUI button
 import Button from '@mui/material/Button';
 
 const PatientButton = ({setPatient, setPatientData,
-     patientName, chartDataset}) => (
+     patientName, dataset}) => (
+    // Custom-styled button
     <Button variant="contained" disableElevation disableRipple
+        // Set patient and patientData on button click
         onClick={() => {
-            setPatientData(chartDataset.filter(
+            setPatientData(dataset.filter(
                 data => data["Patient Name"] === patientName
         ));
             setPatient(patientName);
