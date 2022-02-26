@@ -13,25 +13,28 @@ const LineChartDisplay = ({data, opacity, handleMouseEnter, handleMouseLeave}) =
         <YAxis yAxisId="left" type="number" domain={[0, 21]}>
         <Label
         value="GAD-7 Score" position="insideLeft" offset={15}
-        angle={-90} style={{ textAnchor: 'middle' }}
+        angle={-90}
         />
         </YAxis>
         <YAxis yAxisId="right" orientation="right"
         type="number" domain={[0, 27]}>
         <Label
         value="PHQ-9 Score" position="insideRight" offset={15}
-        angle={-90} style={{ textAnchor: 'middle' }}
+        angle={-90}
         />
         </YAxis>
-        <Tooltip labelFormatter={(unixTime) => moment(unixTime).format('M/D/YY')}/>
+        <Tooltip labelFormatter={(unixTime) => moment(unixTime).format('M/D/YY')}
+        contentStyle={{backgroundColor:'#f1f8f1', color:'#595c5e',
+        borderColor:'#f1f8f1', borderRadius:'.4rem',
+        }}/>
         <Legend
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         />
         <Line yAxisId="left" type="monotone"  dataKey="GAD-7 Score"
-        stroke="#8884d8" strokeWidth={3} strokeOpacity={opacity["GAD-7 Score"]}/>
+        stroke="#ff4511" strokeWidth={2} strokeOpacity={opacity["GAD-7 Score"]}/>
         <Line yAxisId="right" type="monotone" dataKey="PHQ-9 Score"
-        stroke="#82ca9d" strokeWidth={3} strokeOpacity={opacity["PHQ-9 Score"]}/>
+        stroke="#6c904d" strokeWidth={2} strokeOpacity={opacity["PHQ-9 Score"]}/>
         </LineChart>
     </ResponsiveContainer>
 );
