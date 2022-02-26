@@ -13,8 +13,9 @@ const Buttons = ({chartDataset, setPatient, setPatientData}) => (
         marginTop: '0.5rem',
         display:'flex',
         width:'80%',
+        height:'10%',
         flexWrap:'wrap',
-        justifyContent: 'space-around'
+        justifyContent: 'center'
     }}>
         {patientList.map((patient) => (
           <PatientButton key={patient} setPatient={setPatient}

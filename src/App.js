@@ -9,7 +9,7 @@ import Buttons from './components/ButtonGroup';
 dataset.forEach(entry => {
   var d = new Date(entry['Timestamp']);
   entry["Date"] = d.getMonth()+1 + "/" + d.getDate() + "/" + d.getFullYear();
-  entry["Unixtime"] = d.getTime();
+  entry["UnixTime"] = d.getTime();
 });
 
 //Get list of unique patients
@@ -21,6 +21,18 @@ function App() {
   const [patient, setPatient] = useState(patientList[0]);
   const [patientData, setPatientData] = useState(chartDataset.filter(
   data => data["Patient Name"] == patient));
+  const unixTimes = patientData.map(entry => entry["UnixTime"])
+  const unixTimeMin = Math.min(...unixTimes);
+  const unixTimeMax = Math.max(...unixTimes);
+  const unixTimeRange = unixTimeMax - unixTimeMin;
+  const unixTimeTicks = [
+    unixTimeMin,
+    unixTimeMin+1/5*unixTimeRange,
+    unixTimeMin+2/5*unixTimeRange,
+    unixTimeMin+3/5*unixTimeRange,
+    unixTimeMin+4/5*unixTimeRange,
+    unixTimeMax
+  ];
   const [opacity, setOpacity] = useState({
     "GAD-7 Score": 1,
     "PHQ-9 Score": 1
@@ -48,15 +60,18 @@ const handleMouseLeave = useCallback(
   return (
     <div className="App">
       <GlobalStyle />
+      <div className="header">
       <h1>Patient Progress Visualizer</h1>
       <h2>View the progress of your patients' mental health scores</h2>
-      <div className="LineChartContainer" style={{width: '100%', height: '500px'}}>
+      </div>
+      <div className="LineChartContainer">
         <LineChartTitle patientName={patient}/>
         <LineChartDisplay
         data={patientData}
         opacity={opacity}
         handleMouseEnter={handleMouseEnter}
-        handleMouseLeave={handleMouseLeave}/>
+        handleMouseLeave={handleMouseLeave}
+        unixTimeTicks={unixTimeTicks}/>
       </div>
       <Buttons chartDataset={chartDataset}
       setPatient={setPatient} setPatientData={setPatientData}/>

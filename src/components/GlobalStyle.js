@@ -11,13 +11,17 @@ const GlobalStyle = createGlobalStyle`
 
 body{
     font-family: -apple-system,BlinkMacSystemFont,Inter,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
-    margin: 1rem;
+    margin: 2.5%;
     background-color: #fbfcf9;
 }
 
 .App{
     display: flex;
     flex-direction: column;
+}
+
+.header{
+    height: 10%;
 }
 
 h1, h2, h3{
@@ -32,7 +36,6 @@ h1, h2, h3{
 h2{
     font-size: 18px;
     line-height: 18px;
-    margin-top: 0.25rem;
 }
 
 h3{
@@ -46,8 +49,9 @@ h3{
     display:flex;
     flex-direction: column;
     margin: auto;
-    margin-top: 1.5rem;
-    animation-duration:10;
+    margin-top: 2.5%;
+    width:90vw;
+    height:65vh;
 }
 
 .recharts-responsive-container{
