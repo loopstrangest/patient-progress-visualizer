@@ -1,5 +1,5 @@
 // Imports: React, JSON data, components
-import React, {useState, useCallback} from 'react';
+import React, {useState} from 'react';
 import dataset from "./MH Score Visualizer Data.json"
 import GlobalStyle from "./components/GlobalStyle";
 import LineChartDisplay from "./components/LineChart";
@@ -22,7 +22,7 @@ function App() {
   
   // patientData: the selected patient's data
   const [patientData, setPatientData] = useState(dataset.filter(
-    data => data["Patient Name"] == patient));
+    data => data["Patient Name"] === patient));
   
   // opacity: the opacity of each Recharts line
   const [opacity, setOpacity] = useState({
@@ -43,23 +43,21 @@ function App() {
   ];
   
   // Update line opacities to highlight the line corresponding to legend mouse hover
-  const handleMouseEnter = useCallback(
+  const handleMouseEnter = (
     (o) => {
       const { dataKey } = o;
       setOpacity({
       "GAD-7 Score": 0.33,
       "PHQ-9 Score": 0.33,
       [dataKey]: 1});
-    },
-    [opacity, setOpacity]
+    }
   );
-const handleMouseLeave = useCallback(
-   (o) => {
+const handleMouseLeave = (
+   () => {
      setOpacity({
       "GAD-7 Score": 1,
       "PHQ-9 Score": 1})
-   },
-   [opacity, setOpacity]
+   }
  );
 
   return (
