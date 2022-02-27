@@ -1,13 +1,7 @@
 // Import MaterialUI button, constant
 import Button from "@mui/material/Button";
-import { PATIENT_NAME } from "../constants.js";
 
-const PatientButton = ({
-  setPatient,
-  setPatientData,
-  patientName,
-  dataset,
-}) => (
+const PatientButton = ({ setPatient, patientName }) => (
   // Custom-styled button
   <Button
     variant="contained"
@@ -15,9 +9,6 @@ const PatientButton = ({
     disableRipple
     // Set patient and patientData on button click
     onClick={() => {
-      setPatientData(
-        dataset.filter((data) => data[PATIENT_NAME] === patientName)
-      );
       setPatient(patientName);
     }}
     sx={{

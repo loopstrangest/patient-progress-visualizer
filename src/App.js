@@ -14,22 +14,26 @@ import {
 } from "./constants.js";
 
 // Get unix times for Recharts line chart implementation
-dataset.forEach((entry) => {
-  var d = new Date(entry[TIMESTAMP]);
-  entry[UNIXTIME] = d.getTime();
-});
+const datasetWithUnix = dataset.map((entry) => ({
+  ...entry,
+  [UNIXTIME]: new Date(entry[TIMESTAMP]).getTime(),
+}));
 
 // Get an initial patient to display an initial data set on page load
-const initialPatient = dataset[0][PATIENT_NAME];
+const initialPatient = datasetWithUnix[0][PATIENT_NAME];
+
+// Get list of unique patients for buttons
+var patientList = datasetWithUnix
+  .map((data) => data[PATIENT_NAME])
+  .filter((value, index, self) => self.indexOf(value) === index);
 
 function App() {
   // patient: the selected patient
   const [patient, setPatient] = useState(initialPatient);
 
-  // patientData: the selected patient's data
-  const [patientData, setPatientData] = useState(
-    dataset.filter((data) => data[PATIENT_NAME] === patient)
-  );
+  // get the selected patient's data
+  const getPatientData = (patient) =>
+    datasetWithUnix.filter((data) => data[PATIENT_NAME] === patient);
 
   // opacity: the opacity of each Recharts line
   const [opacity, setOpacity] = useState({
@@ -39,7 +43,7 @@ function App() {
 
   /* Calculate unix times
   and store in an array compatible with Recharts line chart */
-  const unixTimes = patientData.map((entry) => entry[UNIXTIME]);
+  const unixTimes = getPatientData(patient).map((entry) => entry[UNIXTIME]);
   const unixTimeMin = Math.min(...unixTimes);
   const unixTimeMax = Math.max(...unixTimes);
   const unixTimeRange = unixTimeMax - unixTimeMin;
@@ -79,18 +83,14 @@ function App() {
         <div className="LineChartContainer">
           <LineChartTitle patientName={patient} />
           <LineChartDisplay
-            data={patientData}
+            data={getPatientData(patient)}
             opacity={opacity}
             handleMouseEnter={handleMouseEnter}
             handleMouseLeave={handleMouseLeave}
             unixTimeTicks={unixTimeTicks}
           />
         </div>
-        <Buttons
-          dataset={dataset}
-          setPatient={setPatient}
-          setPatientData={setPatientData}
-        />
+        <Buttons patientList={patientList} setPatient={setPatient} />
       </div>
     </div>
   );

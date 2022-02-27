@@ -1,15 +1,8 @@
 // Imports: MaterialUI container, child component, JSON data, constant
 import Container from "@mui/material/Container";
 import PatientButton from "./PatientButton";
-import patientData from "../MH Score Visualizer Data.json";
-import { PATIENT_NAME } from "../constants.js";
 
-// Get list of unique patients for buttons
-var patientList = patientData
-  .map((data) => data[PATIENT_NAME])
-  .filter((value, index, self) => self.indexOf(value) === index);
-
-const Buttons = ({ dataset, setPatient, setPatientData }) => (
+const Buttons = ({ patientList, setPatient }) => (
   // Custom-styled button container
   <Container
     disableElevation
@@ -29,9 +22,7 @@ const Buttons = ({ dataset, setPatient, setPatientData }) => (
       <PatientButton
         key={patient}
         setPatient={setPatient}
-        setPatientData={setPatientData}
         patientName={patient}
-        dataset={dataset}
       />
     ))}
   </Container>
