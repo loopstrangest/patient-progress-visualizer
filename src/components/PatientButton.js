@@ -2,7 +2,7 @@
 import Button from "@mui/material/Button";
 
 const PatientButton = ({ setPatient, patientName }) => (
-  // Custom-styled button
+  // Styled patient button
   <Button
     variant="contained"
     disableElevation

@@ -13,13 +13,15 @@ import {
   UNIXTIME,
 } from "./constants.js";
 
-// Get unix times for Recharts line chart implementation
+/* Get unix times for Recharts line chart implementation.
+Recharts requires particular time formatting to accurately
+display a continuous time seres */
 const datasetWithUnix = dataset.map((entry) => ({
   ...entry,
   [UNIXTIME]: new Date(entry[TIMESTAMP]).getTime(),
 }));
 
-// Get an initial patient to display an initial data set on page load
+// Get initial patient to display an initial dataset on page load
 const initialPatient = datasetWithUnix[0][PATIENT_NAME];
 
 // Get list of unique patients for buttons
@@ -28,21 +30,25 @@ var patientList = datasetWithUnix
   .filter((value, index, self) => self.indexOf(value) === index);
 
 function App() {
-  // patient: the selected patient
+  /* 'patient' refers to the selected patient's name.
+  This is used to filter the patient's data
+  from the full dataset */
   const [patient, setPatient] = useState(initialPatient);
 
-  // get the selected patient's data
+  /* Get the selected patient's data by passing the patient's
+  name as a parameter */
   const getPatientData = (patient) =>
     datasetWithUnix.filter((data) => data[PATIENT_NAME] === patient);
 
-  // opacity: the opacity of each Recharts line
+  // 'opacity' refers to the opacity of each Recharts line
   const [opacity, setOpacity] = useState({
     [GAD7_SCORE]: 1,
     [PHQ9_SCORE]: 1,
   });
 
-  /* Calculate unix times
-  and store in an array compatible with Recharts line chart */
+  /* Calculate unix times and store them in an array for Recharts line chart,
+  read by Recharts as unix times and formatted for the user as dates.
+  Five tick dates shown on the x-axis are nicely spaced in a full width browser */
   const unixTimes = getPatientData(patient).map((entry) => entry[UNIXTIME]);
   const unixTimeMin = Math.min(...unixTimes);
   const unixTimeMax = Math.max(...unixTimes);

@@ -1,3 +1,4 @@
+//Constant strings help prevent errors from typos
 export const PATIENT_NAME = "Patient Name";
 export const TIMESTAMP = "Timestamp";
 export const GAD7_SCORE = "GAD-7 Score";

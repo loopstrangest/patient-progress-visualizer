@@ -19,14 +19,15 @@ const LineChartDisplay = ({
   handleMouseLeave,
   unixTimeTicks,
 }) => (
-  // Recharts' container for chart responsiveness
+  // Recharts provides a container for chart responsiveness
   <ResponsiveContainer width="95%" height="90%" margin="auto">
     <LineChart data={data} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
       {/*
-        X-axis always displays min and max time entries
+        X-axis always displays min and max time entries.
         Unix time is required for Recharts compatibility.
-        Tick formatting is done for date readability. 
-        */}
+        Tick formatting converts from the required unix time
+        format to provide readable dates
+      */}
       <XAxis
         dataKey={UNIXTIME}
         domain={["dataMin", "dataMax"]}
@@ -37,9 +38,10 @@ const LineChartDisplay = ({
         tickFormatter={(unixTime) => moment(unixTime).format("M/D/YY")}
       />
       {/*
-        Y-axes display manually-selected constant-interval ticks.
-        Labels indicate each axis' corresponding score.
-        */}
+        Y-axes display manually-selected constant-interval ticks
+        based on the known ranges of the mental health scores.
+        Labels indicate each axis' corresponding score
+      */}
       <YAxis
         yAxisId="left"
         type="number"
@@ -68,9 +70,9 @@ const LineChartDisplay = ({
         />
       </YAxis>
       {/*
-        Tooltip with custom formatting.
-        Displays both scores for a given date on mouse hover.
-        */}
+        Tooltip with styling that displays both scores
+        for a given date on mouse hover
+      */}
       <Tooltip
         labelFormatter={(unixTime) => moment(unixTime).format("M/D/YY")}
         contentStyle={{

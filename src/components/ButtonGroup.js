@@ -16,8 +16,7 @@ const Buttons = ({ patientList, setPatient }) => (
       justifyContent: "center",
     }}
   >
-    {/* Display one button per patient with patientData
-    to update the line chart on click */}
+    {/* Display one button per patient */}
     {patientList.map((patient) => (
       <PatientButton
         key={patient}
